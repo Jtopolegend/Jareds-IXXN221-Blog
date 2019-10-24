@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Jareds IXXN221 Blog</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <header>
+        <h1> Jared Topliss IXXN221 Blog </h1>
+    </header>
+
+</head>
+
+<body>
+
+    <ul id="navigation">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="reflections.html">Reflections</a></li>
+        <li><a href="NumberGuessing.html">Number Guessing Game</a></li>
+    </ul>
+
+    <section>
+        <h2>Number guessing game</h2>
+        <p> Guess any number between 1-100 and each zone will tell you how close you are </p>
+        <p id="guesses"></p>
+        <p id="lastResult"></p>
+        <p id="lowOrHi"></p>
+
+        
+
+        <div class="form">
+            <label for="guessField">Enter your next guess: </label>
+            <input type="text" id="guessField">
+            <button id="guessSubmit">Enter Guess</button>
+        </div>
+        <div id="NumberGuessingGame">
+            <script>
+                var randomNumber = Math.floor(Math.random() * 100) + 1;
+                var randomNumber2 = Math.floor(Math.random() * 50) + 1;
+                var randomNumber3 = Math.floor(Math.random() * 19) + 1;
+                var randomNumber4 = Math.floor(Math.random() * 9) + 1;
+                var randomNumber5 = Math.floor(Math.random() * 5) + 1;
+                var guesses = document.getElementById("guesses");
+                var lastResult = document.getElementById("lastResult");
+                var lowOrHi = document.getElementById("lowOrHi");
+                var guessSubmit = document.getElementById("guessSubmit");
+                var guessField = document.getElementById("guessField");
+                var guessCount = 1;
+
+                function checkGuess() {
+                    var userGuess = Number(guessField.value);
+                    guesses.innerHTML += userGuess + " ";
+                    if (guessCount == 10) {
+                        lastResult.innerHTML = "!!!GAME OVER!!!";
+                        disableForm();
+                    } else {
+
+                        if (userGuess == randomNumber) {
+                            lastResult.innerHTML = "Congratulations! You got it right!";
+                            lowOrHi.innerHTML = "";
+                            disableForm();
+                        } else {
+                            lastResult.innerHTML = "Wrong!";
+                            if (userGuess < randomNumber) {
+                                lowOrHi.innerHTML = "Freezing Closeness Zone";
+                            }
+
+                            if (userGuess < randomNumber2) {
+                                lowOrHi.innerHTML = "Cold Closeness Zone";
+                            }
+
+                            if (userGuess < randomNumber3) {
+                                lowOrHi.innerHTML = "Warm Closeness Zone";
+                            }
+
+                            if (userGuess < randomNumber4) {
+                                lowOrHi.innerHTML = "Hot Closeness Zone";
+                            }
+
+                            if (userGuess < randomNumber5) {
+                                lowOrHi.innerHTML = "Boiling Closeness Zone";
+                            }
+
+                        }
+                        guessCount++;
+                        guessField.value = "";
+                    }
+                }
+                guessSubmit.onclick = checkGuess;
+            </script>
+    </section>
+</body>
+</div>
+</html>
